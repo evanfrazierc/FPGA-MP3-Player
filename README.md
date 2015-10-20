@@ -3,22 +3,22 @@
 Computer System Design - Final Project
 Prototyping of an Audio Message Recorder 
 
-Team Members:
+Team Members
 John Gangemi
 Chris Frazier
 Bassam Saed
 
 Responsibilities
 
-John Gangemi 
+John Gangemi
 LCD, picoBlaze interaction
 All lcd and picoblaze verilog files
 
-Chris Frazier 
+Chris Frazier
 AC97 Audio Codec, RAM storage interaction
 All audio and RAM verilog files 
 
-Bassam Saed 
+Bassam Saed
 Research, Assisting with documentation
 
 Introduction
