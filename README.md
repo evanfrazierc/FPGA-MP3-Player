@@ -8,14 +8,16 @@ John Gangemi
 Chris Frazier
 Bassam Saed
 
-Responsibilities:
+Responsibilities
 
-John Gangemi: LCD, picoBlaze interaction
+John Gangemi 
+LCD, picoBlaze interaction
 
-Chris Frazier: AC97 Audio Codec, RAM storage interaction
+Chris Frazier 
+AC97 Audio Codec, RAM storage interaction
 
-Bassam Saed: Research, Assisting with documentation
-
+Bassam Saed 
+Research, Assisting with documentation
 
 Introduction
 
