@@ -3,11 +3,15 @@
 Computer System Design - Final Project
 Prototyping of an Audio Message Recorder 
 
-
 Team Members:
 John Gangemi
 Chris Frazier
 Bassam Saed
+
+Responsibilities:
+John Gangemi: LCD, picoBlaze interaction
+Chris Frazier: AC97 Audio Codec, RAM storage interaction
+Bassam Saed: Research, Assisting with documentation
 
 Introduction
 	In this project, we created an audio recorder/player using an ATLYS FPGA board. The player was implemented with a PicoBlaze soft microcontroller. This design had features including the ability to record an audio message, and also play/pause/delete audio. We were able to control the system by displaying output on an LCD display and using the onboard push buttons and dip switches. 
