@@ -11,14 +11,17 @@ Bassam Saed
 Responsibilities
 
 John Gangemi
+
 LCD, picoBlaze interaction
 All lcd and picoblaze verilog files
 
 Chris Frazier
+
 AC97 Audio Codec, RAM storage interaction
 All audio and RAM verilog files 
 
 Bassam Saed
+
 Research, Assisting with documentation
 
 Introduction
