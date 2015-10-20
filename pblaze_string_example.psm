@@ -1,0 +1,53 @@
+; Picoblaze String Usage Example		
+
+; RS232 in/out
+CONSTANT	I_rs232_full	,	00
+CONSTANT	O_rs232_tx_data	,	01
+
+; String Declaration
+STRING		coldStartMsg$	,	"Welcome to Loopback!"
+
+; Named registers
+NAMEREG		s0		,	arg0
+NAMEREG		s1		,	addrH
+NAMEREG		s2		,	addrL
+NAMEREG		s3		,	tmp0
+
+; Start of Program
+		ADDRESS		000
+ENTRY:		JUMP		MAIN_PROGRAM
+
+; Cold Start Code
+COLD_START:	LOAD		addrH		,	CS_MSG_STR'upper 	; Lower byte of CS_MSG_STR location address
+		LOAD		addrL		,	CS_MSG_STR'lower	; Upper byte of CS_MSG_STR location address
+CS_SEND_LOOP:	CALL@		(addrH,addrL)					; Call the variable address
+		CALL		RS232_SEND					; The char is in arg0. Now call RS232
+		COMPARE		arg0		,	"!"			; Check if we just sent the last character. If so, return.
+		RETURN		Z						; Last char sent. Return.
+		ADD		addrL		,	01			; Increment lower byte of address by 1.
+		ADDCY		addrH		,	00			; Propagate CARRY from increment to upper byte if necessary.
+		JUMP		CS_SEND_LOOP					; Next char.
+
+		; This operation is expanded to have one LOAD&RETURN per character in the string
+CS_MSG_STR:	LOAD&RETURN	arg0		,	coldStartMsg$
+; Assuming the above command is located at ADDRESS 010, the expanded instructions will be:
+
+; ADDR 010	LOAD&RETURN	arg0		,	"W"
+; ADDR 011	LOAD&RETURN	arg0		,	"e"
+; ...
+; ADDR 021	LOAD&RETURN	arg0		,	"k"
+; ADDR 022	LOAD&RETURN	arg0		,	"!"
+;
+; So, if you call these lines in order, it allows you to easily expand string operations.
+;
+; Obviously, the LOAD&RETURN is a combination of two operations. Can you guess which?
+
+RS232_SEND:	INPUT		tmp0		,	I_rs232_full
+		SR0		tmp0
+		JUMP		C		,	RS232_SEND
+		OUTPUT		arg0		,	O_rs232_tx_data
+		RETURN
+
+
+MAIN_PROGRAM:	CALL		COLD_START					; Call Cold Start subroutine
+MAIN_LOOP:	JUMP		MAIN_LOOP					; do nothing, forever

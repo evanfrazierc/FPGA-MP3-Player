@@ -1,0 +1,77 @@
+
+# Special REF Pins
+NET "pin_zio_ref" LOC = C2 | IOSTANDARD = SSTL2_II;
+NET "pin_rzq_ref" LOC = L6 | IOSTANDARD = SSTL2_II;
+
+# Memory Controller Timing/Perf Constraints
+CONFIG MCB_PERFORMANCE = STANDARD;
+
+# DDR2 Differential CLK
+NET "hw_ram_ck"		LOC = G3 | IOSTANDARD = DIFF_SSTL2_II;
+NET "hw_ram_ckn"		LOC = G1 | IOSTANDARD = DIFF_SSTL2_II;
+
+# DDR2 Control
+NET "hw_ram_cke"		LOC = H7 | IOSTANDARD = SSTL2_II;
+NET "hw_ram_casn"		LOC = K5 | IOSTANDARD = SSTL2_II;
+NET "hw_ram_ldm"		LOC = K3;
+NET "hw_ram_odt"		LOC = K6 | IOSTANDARD = SSTL2_II;
+NET "hw_ram_rasn"		LOC = L5 | IOSTANDARD = SSTL2_II;
+NET "hw_ram_udm"		LOC = K4 | IOSTANDARD = SSTL2_II;
+NET "hw_ram_wen"		LOC = E3 | IOSTANDARD = SSTL2_II;
+
+# DDR2 Differential Control Signals
+NET "hw_ram_ldqs_n" LOC = L3 | IOSTANDARD = DIFF_SSTL2_II | IN_TERM = NONE;
+NET "hw_ram_ldqs_p" LOC = L4 | IOSTANDARD = DIFF_SSTL2_II | IN_TERM = NONE;
+NET "hw_ram_udqs_n" LOC = P1 | IOSTANDARD = DIFF_SSTL2_II | IN_TERM = NONE;
+NET "hw_ram_udqs_p" LOC = P2 | IOSTANDARD = DIFF_SSTL2_II | IN_TERM = NONE;
+
+# DDR2 Data
+NET "hw_ram_dq[0]" LOC = L2;
+NET "hw_ram_dq[1]" LOC = L1;
+NET "hw_ram_dq[2]" LOC = K2;
+NET "hw_ram_dq[3]" LOC = K1;
+NET "hw_ram_dq[4]" LOC = H2;
+NET "hw_ram_dq[5]" LOC = H1;
+NET "hw_ram_dq[6]" LOC = J3;
+NET "hw_ram_dq[7]" LOC = J1;
+NET "hw_ram_dq[8]" LOC = M3;
+NET "hw_ram_dq[9]" LOC = M1;
+NET "hw_ram_dq[10]" LOC = N2;
+NET "hw_ram_dq[11]" LOC = N1;
+NET "hw_ram_dq[12]" LOC = T2;
+NET "hw_ram_dq[13]" LOC = T1;
+NET "hw_ram_dq[14]" LOC = U2;
+NET "hw_ram_dq[15]" LOC = U1;
+NET "hw_ram_dq[*]" IOSTANDARD = SSTL2_II;
+NET "hw_ram_dq[*]" IN_TERM = NONE;
+
+# DDR2 Address
+NET "hw_ram_ad[0]" LOC = J7;
+NET "hw_ram_ad[1]" LOC = J6;
+NET "hw_ram_ad[2]" LOC = H5;
+NET "hw_ram_ad[3]" LOC = L7;
+NET "hw_ram_ad[4]" LOC = F3;
+NET "hw_ram_ad[5]" LOC = H4;
+NET "hw_ram_ad[6]" LOC = H3;
+NET "hw_ram_ad[7]" LOC = H6;
+NET "hw_ram_ad[8]" LOC = D2;
+NET "hw_ram_ad[9]" LOC = D1;
+NET "hw_ram_ad[10]" LOC = F4;
+NET "hw_ram_ad[11]" LOC = D3;
+NET "hw_ram_ad[12]" LOC = G6;
+NET "hw_ram_ad[*]" IOSTANDARD = SSTL2_II;
+
+# DDR2 Bank Select Pins
+NET "hw_ram_ba[0]" LOC = F2;
+NET "hw_ram_ba[1]" LOC = F1;
+NET "hw_ram_ba[2]" LOC = E1;
+NET "hw_ram_ba[*]" IOSTANDARD = SSTL2_II;
+
+# Uncomment next FOUR lines if NOT using ram black box
+NET "*/memc3_wrapper_inst/mcb_ui_top_inst/mcb_raw_wrapper_inst/selfrefresh_mcb_mode" TIG;
+NET "*/c?_pll_lock" TIG;
+INST "*/memc?_wrapper_inst/mcb_ui_top_inst/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DONE_SOFTANDHARD_CAL*" TIG;
+NET "*/memc?_wrapper_inst/mcb_ui_top_inst/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/CKE_Train" TIG; ##This path exists for DDR2 only
+
+#Please uncomment the below TIG if used in a design which enables self-refresh mode
+#NET "memc?_wrapper_inst/mcb_ui_top_inst/mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/SELFREFRESH_MCB_REQ" TIG;
